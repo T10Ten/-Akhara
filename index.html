@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akhara | Interactive Business Plan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Battambang:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Cool Blues & Vibrant Orange -->
+    <!-- Application Structure Plan: A clean, modern dashboard-style template was chosen to give the website a professional, corporate feel. The top navigation bar allows for easy, linear access to all sections. The layout uses card-based components for "About Us" and "What We Do" to make information easily scannable. The "Packages" section maintains the interactive tab structure to save space while presenting detailed pricing information clearly. The use of images breaks up the text, improving visual flow and engagement. -->
+    <!-- Visualization & Content Choices: 
+        - Company Details (Mission, Vision, Values) -> Goal: Inform -> Viz: Card Layouts with Headings (HTML/CSS) -> Interaction: None -> Justification: Clearly organizes and presents dense corporate information in an easy-to-read format. Photos add visual interest.
+        - Core Services & Pain Points -> Goal: Inform -> Viz: Card Layouts (HTML/CSS) -> Interaction: None -> Justification: Breaks down complex ideas into easily digestible chunks.
+        - Service Packages -> Goal: Compare/Organize -> Viz: Interactive Tabs (HTML/JS) -> Interaction: Click to reveal -> Justification: This method effectively presents multiple packages without overwhelming the user, encouraging them to explore options.
+        - Pricing Details -> Goal: Inform -> Viz: Embedded in text -> Interaction: None -> Justification: Directly states the pricing model as requested by the user, making it transparent.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            background-color: #F8F9FA;
+            font-family: 'Inter', 'Battambang', sans-serif;
+            color: #333333;
+        }
+        .nav-link {
+            transition: color 0.3s;
+            color: #495057;
+            font-weight: 600;
+        }
+        .nav-link:hover {
+            color: #F28F3B;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .tab.active {
+            background-color: #F28F3B;
+            color: #FFFFFF;
+        }
+        .language-toggle {
+            cursor: pointer;
+            font-weight: bold;
+            color: #333333;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s;
+        }
+        .language-toggle:hover {
+            background-color: #F28F3B;
+            color: #FFFFFF;
+        }
+        .language-toggle.active {
+            background-color: #F28F3B;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Nav -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-[#14213d] font-battambang">អក្ខរា <span class="font-light font-inter">Akhara</span></div>
+            <div class="hidden md:flex space-x-8">
+                 <a href="#about-us" class="nav-link">About Us</a>
+                 <a href="#what-we-do" class="nav-link">What We Do</a>
+                 <a href="#packages" class="nav-link">Packages</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="lang-en" class="language-toggle active" data-lang="en">EN</button>
+                <button id="lang-km" class="language-toggle" data-lang="km">ខ្មែរ</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <!-- Hero Section -->
+        <section class="text-center py-16">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight text-[#14213d]" data-lang-key="hero-title">Unlock Cambodia's Digital Frontier.</h1>
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight text-[#14213d] font-battambang hidden" data-lang-key="hero-title-kh">ដោះសោរឱកាសឌីជីថលនៅកម្ពុជា។</h1>
+            <p class="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-gray-700" data-lang-key="hero-subtitle">We empower brands with authentic connections in one of Southeast Asia's fastest-growing markets.</p>
+            <p class="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-gray-700 font-battambang hidden" data-lang-key="hero-subtitle-kh">យើងជួយពង្រឹងម៉ាកយីហោឱ្យភ្ជាប់ទំនាក់ទំនងពិតប្រាកដនៅក្នុងទីផ្សារមួយដែលរីកចម្រើនលឿនបំផុតនៅអាស៊ីអាគ្នេយ៍។</p>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about-us" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#14213d]" data-lang-key="section-about-us">Who We Are</h2>
+                <h2 class="text-3xl md:text-4xl font-bold font-battambang hidden" data-lang-key="section-about-us-kh">យើងជានរណា</h2>
+            </div>
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-16">
+                 <div class="card p-8">
+                     <p class="mt-2 text-gray-600 leading-relaxed" data-lang-key="about-us-intro">Akhara is a PR Box and influencer/UGC service provider focused on empowering brands in Cambodia. We believe in building authentic connections and delivering measurable engagement through creative, culturally relevant campaigns. We are your partner in navigating Cambodia's dynamic digital landscape.</p>
+                     <p class="mt-2 text-gray-600 leading-relaxed font-battambang hidden" data-lang-key="about-us-intro-kh">អក្ខរា គឺជាក្រុមហ៊ុនផ្តល់សេវាកម្មប្រអប់ PR (PR Box) និងការគ្រប់គ្រងយុទ្ធនាការជាមួយអ្នកមានឥទ្ធិពល (Influencer)/អ្នកបង្កើតមាតិកា (UGC) ដោយផ្តោតលើការពង្រឹងម៉ាកយីហោនៅកម្ពុជា។ យើងជឿជាក់លើការកសាងទំនាក់ទំនងពិតប្រាកដ និងផ្តល់លទ្ធផលដែលអាចវាស់វែងបានតាមរយៈយុទ្ធនាការដែលមានភាពច្នៃប្រឌិតនិងស៊ីជម្រៅជាមួយវប្បធម៌។ យើងជាដៃគូរបស់អ្នកក្នុងការរុករកពិភពឌីជីថលដែលកំពុងរីកចម្រើននៅកម្ពុជា។</p>
+                 </div>
+                 <div class="card p-4">
+                     <img src="https://placehold.co/600x400/F28F3B/FFFFFF?text=Creative+Team" alt="A creative team collaborating around a design table." class="rounded-lg w-full">
+                 </div>
+            </div>
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="card p-6">
+                    <h4 class="text-2xl font-bold text-[#14213d] mb-2" data-lang-key="mission-title">Mission</h4>
+                     <h4 class="text-2xl font-bold text-[#14213d] font-battambang hidden mb-2" data-lang-key="mission-title-kh">បេសកកម្ម</h4>
+                    <p class="text-gray-600 text-sm" data-lang-key="mission-text">To empower brands in Cambodia to connect authentically with their target audiences through curated PR experiences and impactful influencer-generated content, fostering trust and driving measurable engagement.</p>
+                    <p class="text-gray-600 text-sm font-battambang hidden" data-lang-key="mission-text-kh">ដើម្បីជួយពង្រឹងម៉ាកយីហោនៅកម្ពុជាឱ្យភ្ជាប់ទំនាក់ទំនងពិតប្រាកដជាមួយទស្សនិកជនគោលដៅរបស់ពួកគេតាមរយៈបទពិសោធន៍ PR ដែលបានរៀបចំយ៉ាងយកចិត្តទុកដាក់ និងមាតិកាដែលបង្កើតដោយអ្នកមានឥទ្ធិពលប្រកបដោយប្រសិទ្ធភាព ដោយលើកកម្ពស់ទំនុកចិត្ត និងជំរុញការចូលរួមដែលអាចវាស់វែងបាន។</p>
+                </div>
+                <div class="card p-6">
+                    <h4 class="text-2xl font-bold text-[#14213d] mb-2" data-lang-key="vision-title">Vision</h4>
+                    <h4 class="text-2xl font-bold text-[#14213d] font-battambang hidden mb-2" data-lang-key="vision-title-kh">ចក្ខុវិស័យ</h4>
+                    <p class="text-gray-600 text-sm" data-lang-key="vision-text">To become the leading PR Box and influencer/UGC service provider in Cambodia, recognized for its innovation, cultural relevance, and exceptional value delivery to both clients and content creators.</p>
+                     <p class="text-gray-600 text-sm font-battambang hidden" data-lang-key="vision-text-kh">ដើម្បីក្លាយជាក្រុមហ៊ុនផ្តល់សេវាកម្មប្រអប់ PR និងអ្នកមានឥទ្ធិពល/UGC ឈានមុខគេនៅកម្ពុជា ដែលត្រូវបានទទួលស្គាល់ចំពោះការច្នៃប្រឌិត ភាពស៊ីជម្រៅជាមួយវប្បធម៌ និងការផ្តល់តម្លៃដ៏ល្អបំផុតដល់ទាំងអតិថិជន និងអ្នកបង្កើតមាតិកា។</p>
+                </div>
+                <div class="card p-6">
+                    <h4 class="text-2xl font-bold text-[#14213d] mb-2" data-lang-key="values-title">Core Values</h4>
+                    <h4 class="text-2xl font-bold text-[#14213d] font-battambang hidden mb-2" data-lang-key="values-title-kh">តម្លៃស្នូល</h4>
+                    <ul class="mt-2 space-y-1 text-gray-600 text-sm text-left">
+                        <li class="flex items-center"><span class="text-[#F28F3B] mr-2 text-lg">✓</span><span data-lang-key="value-1">Authenticity</span><span class="font-battambang hidden" data-lang-key="value-1-kh">ភាពពិតប្រាកដ</span></li>
+                        <li class="flex items-center"><span class="text-[#F28F3B] mr-2 text-lg">✓</span><span data-lang-key="value-2">Creativity</span><span class="font-battambang hidden" data-lang-key="value-2-kh">ការច្នៃប្រឌិត</span></li>
+                        <li class="flex items-center"><span class="text-[#F28F3B] mr-2 text-lg">✓</span><span data-lang-key="value-3">Collaboration</span><span class="font-battambang hidden" data-lang-key="value-3-kh">កិច្ចសហការ</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- What We Do Section -->
+        <section id="what-we-do" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#14213d]" data-lang-key="section-we-do">What We Do</h2>
+                <h2 class="text-3xl md:text-4xl font-bold font-battambang hidden" data-lang-key="section-we-do-kh">អ្វីដែលយើងធ្វើ</h2>
+                <p class="mt-2 max-w-2xl mx-auto text-gray-600" data-lang-key="we-do-intro">We provide a full-service solution to elevate your brand's presence through impactful PR Boxes and strategic creator partnerships.</p>
+                <p class="mt-2 max-w-2xl mx-auto text-gray-600 font-battambang hidden" data-lang-key="we-do-intro-kh">យើងផ្ដល់សេវាកម្មពេញលេញដើម្បីលើកកម្ពស់វត្តមានម៉ាកយីហោរបស់អ្នកតាមរយៈប្រអប់ PR ដែលមានប្រសិទ្ធភាព និងភាពជាដៃគូជាមួយអ្នកបង្កើតមាតិកាប្រកបដោយយុទ្ធសាស្ត្រ។</p>
+            </div>
+
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <div class="card p-4">
+                     <img src="https://placehold.co/600x400/F4F1DE/3D405B?text=PR+Box+Design" alt="An artist's hands sketching a box design." class="rounded-lg w-full">
+                 </div>
+                <div class="card p-6">
+                    <h3 class="text-2xl font-bold mb-2" data-lang-key="card-services-title">Our Services</h3>
+                    <h3 class="text-2xl font-bold font-battambang hidden" data-lang-key="card-services-title-kh">សេវាកម្មរបស់យើង</h3>
+                    <ul class="mt-4 space-y-2 text-gray-700">
+                        <li data-lang-key="service-1">1. Custom PR Box for influencers and UGC creators.</li>
+                        <li data-lang-key="service-2">2. Delivery of PR Boxes to creators or for your own use.</li>
+                        <li data-lang-key="service-3">3. Professional consultation on PR Box strategy.</li>
+                        <li class="hidden" data-lang-key="service-1-kh">1. បង្កើតប្រអប់ PR តាមតម្រូវការសម្រាប់ Influencer និង UGC។</li>
+                        <li class="hidden" data-lang-key="service-2-kh">2. ផ្ដល់សេវាកម្មដឹកជញ្ជូនប្រអប់ PR ទៅកាន់អ្នកបង្កើតមាតិកា។</li>
+                        <li class="hidden" data-lang-key="service-3-kh">3. ប្រឹក្សាយោបល់អំពីយុទ្ធសាស្ត្រប្រអប់ PR។</li>
+                    </ul>
+                    <h3 class="text-2xl font-bold mt-8 mb-2" data-lang-key="card-problems-title">Problems We Solve</h3>
+                    <h3 class="text-2xl font-bold font-battambang hidden mt-8 mb-2" data-lang-key="card-problems-title-kh">បញ្ហាដែលយើងដោះស្រាយ</h3>
+                    <ul class="mt-4 space-y-2 text-gray-700">
+                        <li data-lang-key="problem-1">1. Businesses lack connections and knowledge to reach creators.</li>
+                        <li data-lang-key="problem-2">2. Influencer fees are often too high for new brands.</li>
+                        <li data-lang-key="problem-3">3. No time or resources to find packaging/merchandise suppliers.</li>
+                        <li class="hidden" data-lang-key="problem-1-kh">1. អាជីវកម្មថ្មីៗខ្វះខាតទំនាក់ទំនងនិងចំណេះដឹងក្នុងការទៅដល់អ្នកបង្កើតមាតិកា។</li>
+                        <li class="hidden" data-lang-key="problem-2-kh">2. អ្នកមានឥទ្ធិពលខ្លះមានតម្លៃថ្លៃពេកសម្រាប់ម៉ាកយីហោថ្មី។</li>
+                        <li class="hidden" data-lang-key="problem-3-kh">3. ខ្វះពេល ឬធនធានដើម្បីស្វែងរកអ្នកផ្គត់ផ្គង់ប្រអប់និងទំនិញ។</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Packages Section -->
+        <section id="packages" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#14213d]" data-lang-key="section-packages">Our Packages & Pricing</h2>
+                <h2 class="text-3xl md:text-4xl font-bold font-battambang hidden" data-lang-key="section-packages-kh">កញ្ចប់សេវាកម្ម និងតម្លៃ</h2>
+                <p class="mt-2 max-w-2xl mx-auto text-gray-600" data-lang-key="package-intro">The price of the custom PR box itself ranges from <span class="font-bold text-[#F28F3B]">$5 to $15 per box</span>, depending on the design, quantity, and quality. Our packages below add a service fee on top of the box cost.</p>
+                <p class="mt-2 max-w-2xl mx-auto text-gray-600 font-battambang hidden" data-lang-key="package-intro-kh">តម្លៃនៃប្រអប់ PR តាមតម្រូវការមានចន្លោះពី <span class="font-bold text-[#F28F3B]">៥ដុល្លារ ទៅ ១៥ដុល្លារក្នុងមួយប្រអប់</span> អាស្រ័យលើការរចនា បរិមាណ និងគុណភាព។ កញ្ចប់សេវាកម្មរបស់យើងមានតម្លៃបន្ថែមលើតម្លៃប្រអប់។</p>
+            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-wrap justify-center border-b-2 border-gray-200 mb-8">
+                    <button data-tab="normal" class="tab active py-2 px-4 md:px-6 font-semibold rounded-t-lg transition-colors" data-lang-key="tab-normal">Normal</button>
+                    <button data-tab="bronze" class="tab py-2 px-4 md:px-6 font-semibold rounded-t-lg transition-colors" data-lang-key="tab-bronze">Bronze</button>
+                    <button data-tab="silver" class="tab py-2 px-4 md:px-6 font-semibold rounded-t-lg transition-colors" data-lang-key="tab-silver">Silver</button>
+                    <button data-tab="gold" class="tab py-2 px-4 md:px-6 font-semibold rounded-t-lg transition-colors" data-lang-key="tab-gold">Gold</button>
+                </div>
+                <div id="tab-content" class="card p-8">
+                    <!-- Content will be injected by JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <h3 class="text-2xl font-bold" data-lang-key="footer-title">Let's Build Together</h3>
+            <h3 class="text-2xl font-bold font-battambang hidden" data-lang-key="footer-title-kh">ចូរយើងកសាងជាមួយគ្នា</h3>
+            <p class="mt-2 max-w-md mx-auto" data-lang-key="footer-subtitle">Contact us to discover how Akhara can elevate your brand in Cambodia.</p>
+            <p class="mt-2 max-w-md mx-auto font-battambang hidden" data-lang-key="footer-subtitle-kh">ទំនាក់ទំនងមកយើងខ្ញុំដើម្បីស្វែងយល់ពីរបៀបដែលអក្ខរាអាចលើកកម្ពស់ម៉ាកយីហោរបស់អ្នកនៅកម្ពុជា។</p>
+            <p class="mt-4 font-semibold text-[#F28F3B] font-inter">contact@akhara.com.kh</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- DATA STORE ---
+        const languageData = {
+            en: {
+                'hero-title': 'Unlock Cambodia\'s Digital Frontier.',
+                'hero-subtitle': 'We empower brands with authentic connections in one of Southeast Asia\'s fastest-growing markets.',
+                'section-about-us': 'Who We Are',
+                'about-us-intro': 'Akhara is a PR Box and influencer/UGC service provider focused on empowering brands in Cambodia. We believe in building authentic connections and delivering measurable engagement through creative, culturally relevant campaigns. We are your partner in navigating Cambodia\'s dynamic digital landscape.',
+                'mission-title': 'Mission',
+                'mission-text': 'To empower brands in Cambodia to connect authentically with their target audiences through curated PR experiences and impactful influencer-generated content, fostering trust and driving measurable engagement.',
+                'vision-title': 'Vision',
+                'vision-text': 'To become the leading PR Box and influencer/UGC service provider in Cambodia, recognized for its innovation, cultural relevance, and exceptional value delivery to both clients and content creators.',
+                'values-title': 'Core Values',
+                'value-1': 'Authenticity',
+                'value-2': 'Creativity',
+                'value-3': 'Collaboration',
+                'section-we-do': 'What We Do',
+                'we-do-intro': 'We provide a full-service solution to elevate your brand\'s presence through impactful PR Boxes and strategic creator partnerships.',
+                'card-services-title': 'Our Services',
+                'service-1': '1. Custom PR Box for influencers and UGC creators.',
+                'service-2': '2. Delivery of PR Boxes to creators or for your own use.',
+                'service-3': '3. Professional consultation on PR Box strategy.',
+                'card-problems-title': 'Problems We Solve',
+                'problem-1': '1. Businesses lack connections and knowledge to reach creators.',
+                'problem-2': '2. Influencer fees are often too high for new brands.',
+                'problem-3': '3. No time or resources to find packaging/merchandise suppliers.',
+                'section-packages': 'Our Packages & Pricing',
+                'package-intro': 'The price of the custom PR box itself ranges from <span class="font-bold text-[#F28F3B]">$5 to $15 per box</span>, depending on the design, quantity, and quality. Our packages below add a service fee on top of the box cost.',
+                'tab-normal': 'Normal',
+                'tab-bronze': 'Bronze',
+                'tab-silver': 'Silver',
+                'tab-gold': 'Gold',
+                'footer-title': 'Let\'s Build Together',
+                'footer-subtitle': 'Contact us to discover how Akhara can elevate your brand in Cambodia.'
+            },
+            km: {
+                'hero-title-kh': 'ដោះសោរឱកាសឌីជីថលនៅកម្ពុជា។',
+                'hero-subtitle-kh': 'យើងជួយពង្រឹងម៉ាកយីហោឱ្យភ្ជាប់ទំនាក់ទំនងពិតប្រាកដនៅក្នុងទីផ្សារមួយដែលរីកចម្រើនលឿនបំផុតនៅអាស៊ីអាគ្នេយ៍។',
+                'section-about-us-kh': 'យើងជានរណា',
+                'about-us-intro-kh': 'អក្ខរា គឺជាក្រុមហ៊ុនផ្តល់សេវាកម្មប្រអប់ PR (PR Box) និងការគ្រប់គ្រងយុទ្ធនាការជាមួយអ្នកមានឥទ្ធិពល (Influencer)/អ្នកបង្កើតមាតិកា (UGC) ដោយផ្តោតលើការពង្រឹងម៉ាកយីហោនៅកម្ពុជា។ យើងជឿជាក់លើការកសាងទំនាក់ទំនងពិតប្រាកដ និងផ្តល់លទ្ធផលដែលអាចវាស់វែងបានតាមរយៈយុទ្ធនាការដែលមានភាពច្នៃប្រឌិតនិងស៊ីជម្រៅជាមួយវប្បធម៌។ យើងជាដៃគូរបស់អ្នកក្នុងការរុករកពិភពឌីជីថលដែលកំពុងរីកចម្រើននៅកម្ពុជា។',
+                'mission-title-kh': 'បេសកកម្ម',
+                'mission-text-kh': 'ដើម្បីជួយពង្រឹងម៉ាកយីហោនៅកម្ពុជាឱ្យភ្ជាប់ទំនាក់ទំនងពិតប្រាកដជាមួយទស្សនិកជនគោលដៅរបស់ពួកគេតាមរយៈបទពិសោធន៍ PR ដែលបានរៀបចំយ៉ាងយកចិត្តទុកដាក់ និងមាតិកាដែលបង្កើតដោយអ្នកមានឥទ្ធិពលប្រកបដោយប្រសិទ្ធភាព ដោយលើកកម្ពស់ទំនុកចិត្ត និងជំរុញការចូលរួមដែលអាចវាស់វែងបាន។',
+                'vision-title-kh': 'ចក្ខុវិស័យ',
+                'vision-text-kh': 'ដើម្បីក្លាយជាក្រុមហ៊ុនផ្តល់សេវាកម្មប្រអប់ PR និងអ្នកមានឥទ្ធិពល/UGC ឈានមុខគេនៅកម្ពុជា ដែលត្រូវបានទទួលស្គាល់ចំពោះការច្នៃប្រឌិត ភាពស៊ីជម្រៅជាមួយវប្បធម៌ និងការផ្តល់តម្លៃដ៏ល្អបំផុតដល់ទាំងអតិថិជន និងអ្នកបង្កើតមាតិកា។',
+                'values-title-kh': 'តម្លៃស្នូល',
+                'value-1-kh': 'ភាពពិតប្រាកដ',
+                'value-2-kh': 'ការច្នៃប្រឌិត',
+                'value-3-kh': 'កិច្ចសហការ',
+                'section-we-do-kh': 'អ្វីដែលយើងធ្វើ',
+                'we-do-intro-kh': 'យើងផ្ដល់សេវាកម្មពេញលេញដើម្បីលើកកម្ពស់វត្តមានម៉ាកយីហោរបស់អ្នកតាមរយៈប្រអប់ PR ដែលមានប្រសិទ្ធភាព និងភាពជាដៃគូជាមួយអ្នកបង្កើតមាតិកាប្រកបដោយយុទ្ធសាស្ត្រ។',
+                'card-services-title-kh': 'សេវាកម្មរបស់យើង',
+                'service-1-kh': '1. បង្កើតប្រអប់ PR តាមតម្រូវការសម្រាប់ Influencer និង UGC។',
+                'service-2-kh': '2. ផ្ដល់សេវាកម្មដឹកជញ្ជូនប្រអប់ PR ទៅកាន់អ្នកបង្កើតមាតិកា។',
+                'service-3-kh': '3. ប្រឹក្សាយោបល់អំពីយុទ្ធសាស្ត្រប្រអប់ PR។',
+                'card-problems-title-kh': 'បញ្ហាដែលយើងដោះស្រាយ',
+                'problem-1-kh': '1. អាជីវកម្មថ្មីៗខ្វះខាតទំនាក់ទំនងនិងចំណេះដឹងក្នុងការទៅដល់អ្នកបង្កើតមាតិកា។',
+                'problem-2-kh': '2. អ្នកមានឥទ្ធិពលខ្លះមានតម្លៃថ្លៃពេកសម្រាប់ម៉ាកយីហោថ្មី។',
+                'problem-3-kh': '3. ខ្វះពេល ឬធនធានដើម្បីស្វែងរកអ្នកផ្គត់ផ្គង់ប្រអប់និងទំនិញ។',
+                'section-packages-kh': 'កញ្ចប់សេវាកម្ម និងតម្លៃ',
+                'package-intro-kh': 'តម្លៃនៃប្រអប់ PR តាមតម្រូវការមានចន្លោះពី ៥ដុល្លារ ទៅ ១៥ដុល្លារក្នុងមួយប្រអប់ អាស្រ័យលើការរចនា បរិមាណ និងគុណភាព។ កញ្ចប់សេវាកម្មរបស់យើងមានតម្លៃបន្ថែមលើតម្លៃប្រអប់។',
+                'tab-normal-kh': 'ធម្មតា',
+                'tab-bronze-kh': 'សំរឹទ្ធ',
+                'tab-silver-kh': 'ប្រាក់',
+                'tab-gold-kh': 'មាស',
+                'footer-title-kh': 'ចូរយើងកសាងជាមួយគ្នា',
+                'footer-subtitle-kh': 'ទំនាក់ទំនងមកយើងខ្ញុំដើម្បីស្វែងយល់ពីរបៀបដែលអក្ខរាអាចលើកកម្ពស់ម៉ាកយីហោរបស់អ្នកនៅកម្ពុជា។'
+            }
+        };
+
+        const packagesData = {
+            en: {
+                normal: {
+                    title: "Normal Package",
+                    description: "For when you just need the box. We consult, design, and create a custom PR Box (including merchandise). You receive the finished boxes to distribute yourself.",
+                    features: ["PR Box Concept & Design", "Local Merchandise Sourcing", "Custom Packaging Production", "Delivery of Final Boxes to Client"],
+                    pricing: "Base Price: <span class='font-bold text-[#F28F3B]'>$5 - $15 per box</span>. Plus a one-time service fee starting from <span class='font-bold text-[#F28F3B]'>$100.</span>",
+                    boxQuantity: "10-20 boxes, or more"
+                },
+                bronze: {
+                    title: "Bronze Package",
+                    description: "We handle the logistics. We create your custom PR Boxes and deliver them to a list of creators you provide. The price depends on the box cost and the number of deliveries.",
+                    features: ["All 'Normal' Features", "Managed Delivery to Client's Creator List", "Proof of Delivery Reporting"],
+                    pricing: "Base Price: <span class='font-bold text-[#F28F3B]'>$5 - $15 per box</span>. Plus a one-time service fee starting from <span class='font-bold text-[#F28F3B]'>$250.</span>",
+                    boxQuantity: "20-30 boxes, or more"
+                },
+                silver: {
+                    title: "Silver Package",
+                    description: "Our most popular option. We handle everything from creation to distribution, leveraging our curated list of influencers and UGC creators to ensure your PR Box reaches an engaged and relevant audience.",
+                    features: ["All 'Bronze' Features", "Distribution to Akhara's Vetted Creator Network", "Basic Campaign Monitoring"],
+                    pricing: "Base Price: <span class='font-bold text-[#F28F3B]'>$5 - $15 per box</span>. Plus a one-time service fee starting from <span class='font-bold text-[#F28F3B]'>$500.</span>",
+                    boxQuantity: "30-50 boxes, or more"
+                },
+                gold: {
+                    title: "Gold Package",
+                    description: "A comprehensive, end-to-end solution. We act as your strategic partner, managing the entire campaign from initial concept to final performance analysis, ensuring maximum impact and ROI.",
+                    features: ["All 'Silver' Features", "Full Campaign Strategy & Management", "Content Collaboration & Approval", "Detailed Performance Analytics & ROI Reporting"],
+                    pricing: "Base Price: <span class='font-bold text-[#F28F3B]'>$5 - $15 per box</span>. Plus a one-time service fee starting from <span class='font-bold text-[#F28F3B]'>$1,500.</span>",
+                    boxQuantity: "50+ boxes, or more"
+                }
+            },
+            km: {
+                 normal: {
+                    title: "កញ្ចប់ធម្មតា",
+                    description: "សម្រាប់ពេលដែលអ្នកគ្រាន់តែត្រូវការប្រអប់។ យើងប្រឹក្សា រចនា និងបង្កើតប្រអប់ PR តាមតម្រូវការ (រួមទាំងទំនិញផង)។ អ្នកនឹងទទួលបានប្រអប់ដែលបានបញ្ចប់ដើម្បីចែកចាយដោយខ្លួនឯង។",
+                    features: ["ផែនការនិងការរចនាប្រអប់ PR", "ការស្វែងរកទំនិញក្នុងស្រុក", "ផលិតប្រអប់តាមតម្រូវការ", "ការដឹកជញ្ជូនប្រអប់ចុងក្រោយទៅកាន់អតិថិជន"],
+                    pricing: "តម្លៃមូលដ្ឋាន: <span class='font-bold text-[#F28F3B]'>៥ - ១៥ដុល្លារក្នុងមួយប្រអប់</span>។ បូកនឹងតម្លៃសេវាដំបូងចាប់ពី <span class='font-bold text-[#F28F3B]'>១០០ដុល្លារ។</span>",
+                    boxQuantity: "១០-២០ ប្រអប់ ឬច្រើនជាងនេះ"
+                },
+                bronze: {
+                    title: "កញ្ចប់សំរឹទ្ធ",
+                    description: "យើងគ្រប់គ្រងការដឹកជញ្ជូន។ យើងបង្កើតប្រអប់ PR តាមតម្រូវការរបស់អ្នក និងដឹកជញ្ជូនទៅកាន់បញ្ជីអ្នកបង្កើតមាតិកាដែលអ្នកបានផ្ដល់ឱ្យយើង។ តម្លៃអាស្រ័យលើតម្លៃប្រអប់និងចំនួនដឹកជញ្ជូន។",
+                    features: ["រួមបញ្ចូលគ្រប់លក្ខណៈពិសេសរបស់ 'ធម្មតា'", "គ្រប់គ្រងការដឹកជញ្ជូនទៅកាន់បញ្ជីអ្នកបង្កើតមាតិកាផ្ទាល់ខ្លួន", "ការរាយការណ៍អំពីភស្តុតាងនៃការដឹកជញ្ជូន"],
+                    pricing: "តម្លៃមូលដ្ឋាន: <span class='font-bold text-[#F28F3B]'>៥ - ១៥ដុល្លារក្នុងមួយប្រអប់</span>។ បូកនឹងតម្លៃសេវាដំបូងចាប់ពី <span class='font-bold text-[#F28F3B]'>២៥០ដុល្លារ។</span>",
+                    boxQuantity: "២០-៣០ ប្រអប់ ឬច្រើនជាងនេះ"
+                },
+                silver: {
+                    title: "កញ្ចប់ប្រាក់",
+                    description: "ជម្រើសពេញនិយមបំផុតរបស់យើង។ យើងគ្រប់គ្រងគ្រប់យ៉ាងពីការបង្កើតរហូតដល់ការចែកចាយ ដោយប្រើប្រាស់បញ្ជីអ្នកមានឥទ្ធិពលនិងអ្នកបង្កើតមាតិកា (UGC) ដែលយើងបានជ្រើសរើសដើម្បីធានាថាប្រអប់ PR របស់អ្នកទៅដល់ទស្សនិកជនត្រឹមត្រូវ។",
+                    features: ["រួមបញ្ចូលគ្រប់លក្ខណៈពិសេសរបស់ 'សំរឹទ្ធ'", "ចែកចាយទៅកាន់បណ្តាញអ្នកបង្កើតមាតិកាដែលយើងមាន", "ការត្រួតពិនិត្យយុទ្ធនាការមូលដ្ឋាន"],
+                    pricing: "តម្លៃមូលដ្ឋាន: <span class='font-bold text-[#F28F3B]'>៥ - ១៥ដុល្លារក្នុងមួយប្រអប់</span>។ បូកនឹងតម្លៃសេវាដំបូងចាប់ពី <span class='font-bold text-[#F28F3B]'>៥០០ដុល្លារ។</span>",
+                    boxQuantity: "៣០-៥០ ប្រអប់ ឬច្រើនជាងនេះ"
+                },
+                gold: {
+                    title: "កញ្ចប់មាស",
+                    description: "ដំណោះស្រាយពេញលេញពីដើមដល់ចប់។ យើងដើរតួជាដៃគូយុទ្ធសាស្ត្ររបស់អ្នក ដោយគ្រប់គ្រងយុទ្ធនាការទាំងមូលចាប់ពីគំនិតដំបូងរហូតដល់ការវិភាគលទ្ធផលចុងក្រោយ ដើម្បីធានាប្រសិទ្ធភាពនិងចំណេញអតិបរមា។",
+                    features: ["រួមបញ្ចូលគ្រប់លក្ខណៈពិសេសរបស់ 'ប្រាក់'", "យុទ្ធសាស្ត្រនិងការគ្រប់គ្រងយុទ្ធនាការពេញលេញ", "ការសហការនិងការអនុម័តមាតិកា", "ការវិភាគលទ្ធផលនិងការរាយការណ៍លម្អិត"],
+                    pricing: "តម្លៃមូលដ្ឋាន: <span class='font-bold text-[#F28F3B]'>៥ - ១៥ដុល្លារក្នុងមួយប្រអប់</span>។ បូកនឹងតម្លៃសេវាដំបូងចាប់ពី <span class='font-bold text-[#F28F3B]'>១,៥០០ដុល្លារ។</span>",
+                    boxQuantity: "៥០+ ប្រអប់ ឬច្រើនជាងនេះ"
+                }
+            }
+        };
+
+        let currentLang = 'en';
+
+        // --- UTILITY FUNCTIONS ---
+        function switchLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-lang-key]').forEach(el => {
+                const key = el.dataset.langKey;
+                let newKey = key;
+                if (lang === 'km' && !key.endsWith('-kh')) {
+                    newKey = key + '-kh';
+                } else if (lang === 'en' && key.endsWith('-kh')) {
+                    newKey = key.replace('-kh', '');
+                }
+                
+                const elementIsHidden = el.classList.contains('hidden');
+                
+                if (languageData[lang][newKey]) {
+                     if (elementIsHidden) {
+                         el.classList.remove('hidden');
+                     }
+                } else if (!elementIsHidden) {
+                    el.classList.add('hidden');
+                }
+            });
+
+            // Update package content
+            updatePackageContent(document.querySelector('.tab.active').dataset.tab, lang);
+            
+            // Update the active language button
+            document.querySelectorAll('.language-toggle').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`lang-${lang}`).classList.add('active');
+
+            // Update tab titles
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                 tab.textContent = languageData[lang][`tab-${tab.dataset.tab}${lang === 'km' ? '-kh' : ''}`];
+            });
+        }
+        
+        function updatePackageContent(tabId, lang) {
+            const tabContentContainer = document.getElementById('tab-content');
+            const pkg = packagesData[lang][tabId];
+            const boxQuantityText = lang === 'km' ? `ចំនួនប្រអប់: ${pkg.boxQuantity}` : `Box Quantity: ${pkg.boxQuantity}`;
+
+            tabContentContainer.innerHTML = `
+                <h4 class="text-2xl font-bold mb-4 text-[#14213d]">${pkg.title}</h4>
+                <p class="text-gray-600 mb-6">${pkg.description}</p>
+                <h5 class="text-lg font-bold mb-2">Pricing</h5>
+                <p class="text-gray-700 mb-2">${pkg.pricing}</p>
+                <p class="text-gray-700 mb-4">${boxQuantityText}</p>
+                <h5 class="text-lg font-bold mb-2">Features</h5>
+                <ul class="space-y-2">
+                    ${pkg.features.map(feature => `
+                        <li class="flex items-start">
+                            <span class="text-[#14213d] mr-3 mt-1">✓</span>
+                            <span>${feature}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+            `;
+        }
+
+        // --- INTERACTIVE UI LOGIC ---
+        
+        // Language Toggles
+        document.getElementById('lang-en').addEventListener('click', () => switchLanguage('en'));
+        document.getElementById('lang-km').addEventListener('click', () => switchLanguage('km'));
+
+        // Tabs for Services
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                updatePackageContent(tab.dataset.tab, currentLang);
+            });
+        });
+
+        // Initial render for the default active tab and language
+        updatePackageContent('normal', currentLang);
+
+    </script>
+</body>
+</html>
